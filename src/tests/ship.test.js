@@ -4,7 +4,12 @@ import { Ship } from "../Ship"
 
 test("creates and initializes a ship", () => {
   let ship = new Ship(3)
-  expect(ship).toEqual({ length: 3, hits: [] })
+  expect(ship).toEqual({ length: 3, hits: [], name: "Submarine" })
+})
+
+test("creates good name", () => {
+  let ship = new Ship(6)
+  expect(ship.name).toEqual("Carrier")
 })
 test("ship takes a hit", () => {
   let ship = new Ship(3)

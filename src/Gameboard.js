@@ -37,5 +37,6 @@ export class GameBoard {
     for (let i = 0; i < ship.getLength(); i++) {
       this.gameBoardArray[x + i][y][0].shipName = ship.nameHandler()
     }
+    return this.gameBoardArray[x][y][0].shipName
   }
 }

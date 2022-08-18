@@ -20,4 +20,7 @@ export class Ship {
     if (this.length === 3) return "Submarine"
     if (this.length === 2) return "Patrol Boat"
   }
+  getLength() {
+    return this.length
+  }
 }

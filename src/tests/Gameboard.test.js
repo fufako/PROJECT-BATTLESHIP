@@ -20,7 +20,7 @@ test("Access the name of the ship", () => {
   expect(gameBoard.gameBoardArray[0][0][0].shipName).toEqual(undefined)
 })
 
-test("Access", () => {
+test("Check if user can place a ship", () => {
   let gameBoard = new GameBoard()
-  expect(gameBoard.receiveAttack(3, 4)).toEqual(false)
+  expect(gameBoard.checkShipPlacement(5, 1, 1)).toEqual(true)
 })

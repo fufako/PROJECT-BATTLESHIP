@@ -1,5 +1,5 @@
 import { Ship } from "./Ship"
-import { markGridItem } from "./UI.js"
+import { hitGridItem, markGridItem } from "./UI.js"
 export class GameBoard {
   constructor(owner) {
     this.gameBoardArray = this.createBoardArray()
@@ -32,13 +32,16 @@ export class GameBoard {
       this.missedAttack.push({ x: x, y: y })
       return
     }
-    this.ships.shipName.hit(this.gameBoardArray[x][y][0].shipPosition)
+
+    this.ships
+      .find((item) => item.name == attackedField.shipName)
+      .hit(attackedField.shipPosition)
+
+    hitGridItem(x, y)
   }
   checkShipPlacement = (length, x, y) => {
-    if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) {
-      console.log("liczby")
-      return false
-    }
+    if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) return false
+
     for (let i = 0; i < x + length; i++) {
       if (this.gameBoardArray[x][y][0].shipName !== undefined) return false
     }
@@ -51,8 +54,7 @@ export class GameBoard {
       this.gameBoardArray[x][y + i][0].shipPosition = i
       markGridItem(x, y + i)
     }
-
-    this.ships.push([ship.nameHandler()])
+    this.ships.push(ship)
     return this.ships
   }
   getMissedAttacks = () => {

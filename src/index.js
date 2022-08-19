@@ -13,5 +13,6 @@ pcGameBoard.placeShip(new Ship(6), 8, 0)
 
 pcGameBoard.receiveAttack(0, 1)
 pcGameBoard.receiveAttack(0, 0)
+
 console.log(pcGameBoard.getGameBoard())
 console.log(pcGameBoard.getShips())

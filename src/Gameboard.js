@@ -27,17 +27,19 @@ export class GameBoard {
   }
   receiveAttack = (x, y) => {
     const attackedField = this.gameBoardArray[x][y][0]
+    const attackedShip = this.ships.find(
+      (item) => item.name == attackedField.shipName
+    )
     const isThereShip = attackedField.shipName === undefined ? false : true
     if (!isThereShip) {
       this.missedAttack.push({ x: x, y: y })
       return
     }
 
-    this.ships
-      .find((item) => item.name == attackedField.shipName)
-      .hit(attackedField.shipPosition)
+    attackedShip.hit(attackedField.shipPosition)
 
     hitGridItem(x, y)
+    console.log(attackedShip.isSunk())
   }
   checkShipPlacement = (length, x, y) => {
     if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) return false
@@ -65,5 +67,8 @@ export class GameBoard {
   }
   getShips = () => {
     return this.ships
+  }
+  checkIfSunk = (ship) => {
+    console.log(ship.isSunk())
   }
 }

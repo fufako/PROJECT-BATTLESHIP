@@ -1,9 +1,11 @@
 import { Ship } from "./Ship"
+import { markGridItem } from "./UI.js"
 export class GameBoard {
   constructor(owner) {
     this.gameBoardArray = this.createBoardArray()
     this.missedAttack = []
     this.owner = owner
+    this.ships = []
   }
 
   createBoardArray = () => {
@@ -30,29 +32,36 @@ export class GameBoard {
       this.missedAttack.push({ x: x, y: y })
       return
     }
-    this.gameBoardArray[x][y][0].shipName.hit(
-      this.gameBoardArray[x][y][0].shipPosition
-    )
+    this.ships.shipName.hit(this.gameBoardArray[x][y][0].shipPosition)
   }
   checkShipPlacement = (length, x, y) => {
-    if (x > 10 || x < 0 || y > 10 || y < 0 || x + length >= 10) return false
+    if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) {
+      console.log("liczby")
+      return false
+    }
     for (let i = 0; i < x + length; i++) {
-      if (this.gameBoardArray[x][i][0].shipName !== undefined) return false
+      if (this.gameBoardArray[x][y][0].shipName !== undefined) return false
     }
     return true
   }
   placeShip = (ship, x, y) => {
     if (!this.checkShipPlacement(ship.getLength(), x, y)) return
     for (let i = 0; i < ship.getLength(); i++) {
-      this.gameBoardArray[x + i][y][0].shipName = ship.nameHandler()
-      this.gameBoardArray[x + i][y][0].shipPosition = i
+      this.gameBoardArray[x][y + i][0].shipName = ship.nameHandler()
+      this.gameBoardArray[x][y + i][0].shipPosition = i
+      markGridItem(x, y + i)
     }
-    return this.gameBoardArray[x + 1][y][0]
+
+    this.ships.push([ship.nameHandler()])
+    return this.ships
   }
   getMissedAttacks = () => {
     return this.missedAttack
   }
   getGameBoard = () => {
     return this.gameBoardArray
+  }
+  getShips = () => {
+    return this.ships
   }
 }

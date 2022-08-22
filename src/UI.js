@@ -1,3 +1,4 @@
+import { gameStart } from "./startGame"
 const SIZE = 10
 
 export function createGrid(name) {
@@ -71,6 +72,7 @@ export function hoverShipPlacement(e) {
     }
   })
 }
+
 //Save locations that user have picked
 let userLocations = []
 export function gridPlaceShip(event) {
@@ -96,7 +98,7 @@ export function gridPlaceShip(event) {
   console.log(userLocations)
   n--
   if (n < 2) closePopup()
-  userLocations.push({ startingX, n })
+  userLocations.push({ startingX, startingY, n })
 
   return
 }
@@ -121,11 +123,12 @@ export function createPopup() {
   }
 }
 
-function closePopup() {
+export function closePopup() {
   const popup = document.querySelector("#popup")
   const gridPopup = document.querySelector(".grid-popup")
   popup.style.visibility = "hidden"
   gridPopup.style.visibility = "hidden"
+  gameStart()
 }
 
 function checkGridShipPlacement(x, y, n) {
@@ -143,7 +146,6 @@ function checkGridShipPlacement(x, y, n) {
   for (let i = y - 1; i <= y + n; i++) {
     indexes.push(i)
   }
-  console.log(indexes)
   let check = true
   gridItems.forEach((item) => {
     if (

@@ -5,6 +5,7 @@ import {
   markGridMissedAttack,
   gridPlaceShip,
 } from "./UI.js"
+
 export class GameBoard {
   constructor(owner) {
     this.gameBoardArray = this.createBoardArray()

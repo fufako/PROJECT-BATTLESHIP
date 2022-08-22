@@ -1,5 +1,12 @@
-import { hoverShipPlacement, gridPlaceShip } from "./UI"
+import {
+  hoverShipPlacement,
+  gridPlaceShip,
+  getUserSelectedLocations,
+  closePopup,
+} from "./UI"
+import { Player } from "./Player"
 import { GameBoard } from "./Gameboard"
+import { Ship } from "./Ship"
 export function gridEventListener(i) {
   const gridItems = document.querySelectorAll(".grid-item-popup")
   gridItems.forEach((item) => {
@@ -8,12 +15,17 @@ export function gridEventListener(i) {
     item.addEventListener("mouseout", hoverShipPlacement)
   })
 }
-function gameStart() {
-  const player1 = new Player("player1")
-  const PC = new Player("PC")
+export function gameStart() {
+  const player = new Player("player1")
+  const playerShipLocations = getUserSelectedLocations()
 
-  for (let i = 2; i < 7; i++) {
-    player1.gameBoard.placeShip(new Ship(i), 0, 0)
-    gridEventListener(i)
-  }
+  playerShipLocations.forEach((location) => {
+    player.gameBoard.placeShip(
+      new Ship(location.n),
+      location.startingX,
+      location.startingY
+    )
+    console.log()
+  })
+  const PC = new Player("PC")
 }

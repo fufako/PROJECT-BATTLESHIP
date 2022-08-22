@@ -1,5 +1,5 @@
 import { Ship } from "./Ship"
-import { hitGridItem, markGridItem } from "./UI.js"
+import { hitGridItem, markGridItem, markGridMissedAttack } from "./UI.js"
 export class GameBoard {
   constructor(owner) {
     this.gameBoardArray = this.createBoardArray()
@@ -32,17 +32,17 @@ export class GameBoard {
       (item) => item.name == attackedField.shipName
     )
 
-    if (attackedShip.isSunk()) return
-
     const isThereShip = attackedField.shipName === undefined ? false : true
 
-    if (this.checkIfLanded(x, y)) return "hey"
+    if (this.checkIfLanded(x, y)) return
 
     if (!isThereShip) {
       this.missedAttacks.push({ x: x, y: y })
+      markGridMissedAttack(x, y, this.owner)
 
       return
     }
+    if (attackedShip.isSunk()) return
     this.landedAttacks.push({ x: x, y: y })
     attackedShip.hit(attackedField.shipPosition)
     console.log(this.landedAttacks)

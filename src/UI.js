@@ -51,13 +51,13 @@ export function markGridMissedAttack(x, y, name) {
 export function gridEventListener() {
   const gridItems = document.querySelectorAll(".grid-item")
   gridItems.forEach((item) => {
+    item.addEventListener("click", gridPlaceShip)
     item.addEventListener("mouseover", hoverShipPlacement)
     item.addEventListener("mouseout", hoverShipPlacement)
   })
 }
 
 function hoverShipPlacement(e) {
-  console.log(e)
   const shipLocation = []
   const startingX = parseInt(e.target.getAttribute("data-x"))
   const startingY = parseInt(e.target.getAttribute("data-y"))
@@ -68,7 +68,10 @@ function hoverShipPlacement(e) {
   gridItems.forEach((item) => {
     if (item.dataset.x == startingX) {
       for (let i = 0; i < 5; i++) {
-        if (item.dataset.y == shipLocation[i]) {
+        if (
+          item.dataset.y == shipLocation[i] &&
+          item.dataset.marked !== "true"
+        ) {
           item.style.backgroundColor = e.type === "mouseover" ? "blue" : "white"
         }
       }
@@ -76,8 +79,7 @@ function hoverShipPlacement(e) {
   })
 }
 
-function unHoverShipPlacement(e) {
-  console.log(e.target.getAttribute("data-x"))
+function gridPlaceShip(e) {
   const shipLocation = []
   const startingX = parseInt(e.target.getAttribute("data-x"))
   const startingY = parseInt(e.target.getAttribute("data-y"))
@@ -89,7 +91,8 @@ function unHoverShipPlacement(e) {
     if (item.dataset.x == startingX) {
       for (let i = 0; i < 5; i++) {
         if (item.dataset.y == shipLocation[i]) {
-          item.style.backgroundColor = "white"
+          item.style.backgroundColor = "grey"
+          item.dataset.marked = "true"
         }
       }
     }

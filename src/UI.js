@@ -51,7 +51,6 @@ export function markGridMissedAttack(x, y, name) {
 let n = 6
 
 export function hoverShipPlacement(e) {
-  if (n < 2) return
   const shipLocation = []
   const startingX = parseInt(e.target.getAttribute("data-x"))
   const startingY = parseInt(e.target.getAttribute("data-y"))
@@ -72,12 +71,14 @@ export function hoverShipPlacement(e) {
     }
   })
 }
-
+//Save locations that user have picked
+let userLocations = []
 export function gridPlaceShip(event) {
-  if (n < 2) return
   const shipLocation = []
   const startingX = parseInt(event.target.getAttribute("data-x"))
   const startingY = parseInt(event.target.getAttribute("data-y"))
+
+  if (!checkGridShipPlacement(startingX, startingY, n)) return
   for (let i = 0; i < n; i++) {
     shipLocation.push(startingY + i)
   }
@@ -92,7 +93,11 @@ export function gridPlaceShip(event) {
       }
     }
   })
+  console.log(userLocations)
   n--
+  if (n < 2) closePopup()
+  userLocations.push({ startingX, n })
+
   return
 }
 
@@ -114,4 +119,43 @@ export function createPopup() {
       grid.appendChild(gridItem)
     }
   }
+}
+
+function closePopup() {
+  const popup = document.querySelector("#popup")
+  const gridPopup = document.querySelector(".grid-popup")
+  popup.style.visibility = "hidden"
+  gridPopup.style.visibility = "hidden"
+}
+
+function checkGridShipPlacement(x, y, n) {
+  if (x > 10 || x < 0 || y > 10 || y < 0 || y + n > 10) return false
+
+  const gridItems = document.querySelectorAll(
+    `.grid-item-popup[data-x="${x - 1}"],
+    .grid-item-popup[data-x="${x + 1}"],
+    .grid-item-popup[data-x="${x}"][data-y="${y - 1}"],
+    .grid-item-popup[data-x="${x}"][data-y="${y + n}"
+     `
+  )
+  const indexes = []
+
+  for (let i = y - 1; i <= y + n; i++) {
+    indexes.push(i)
+  }
+  console.log(indexes)
+  let check = true
+  gridItems.forEach((item) => {
+    if (
+      indexes.includes(parseInt(item.dataset.y)) &&
+      item.dataset.marked == "true"
+    ) {
+      check = false
+    }
+  })
+  if (!check) return false
+  return true
+}
+export function getUserSelectedLocations() {
+  return userLocations
 }

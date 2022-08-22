@@ -33,9 +33,10 @@ body {
   align-items: center;
   align-content: center;
   justify-content: center;
-  visibility: hidden;
+
   color: #e4dccf;
   z-index: 100;
+  background-color: whitesmoke;
 }
 .grid-popup {
   display: grid;

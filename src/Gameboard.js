@@ -47,7 +47,7 @@ export class GameBoard {
     attackedShip.hit(attackedField.shipPosition)
     console.log(this.landedAttacks)
 
-    hitGridItem(x, y)
+    hitGridItem(x, y, this.owner)
   }
   checkShipPlacement = (length, x, y) => {
     if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) return false
@@ -62,7 +62,7 @@ export class GameBoard {
     for (let i = 0; i < ship.getLength(); i++) {
       this.gameBoardArray[x][y + i][0].shipName = ship.nameHandler()
       this.gameBoardArray[x][y + i][0].shipPosition = i
-      markGridItem(x, y + i)
+      markGridItem(x, y + i, this.owner)
     }
     this.ships.push(ship)
     return this.ships

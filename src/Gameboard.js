@@ -64,7 +64,6 @@ export class GameBoard {
     return true
   }
   placeShip = (ship, x, y) => {
-    if (!this.checkShipPlacement(ship.getLength(), x, y)) return
     for (let i = 0; i < ship.getLength(); i++) {
       this.gameBoardArray[x][y + i][0].shipName = ship.nameHandler()
       this.gameBoardArray[x][y + i][0].shipPosition = i

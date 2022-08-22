@@ -14,10 +14,18 @@ export function gridEventListener(i) {
     item.addEventListener("mouseover", hoverShipPlacement)
     item.addEventListener("mouseout", hoverShipPlacement)
   })
+  const battlefieldGridItems = document.querySelectorAll("#PC")
+  console.log(battlefieldGridItems)
+  battlefieldGridItems.forEach((item) => {
+    item.addEventListener("click", (event) => {
+      console.log(event)
+    })
+  })
 }
 export function gameStart() {
-  const player = new Player("player1")
+  const player = new Player("player")
   const playerShipLocations = getUserSelectedLocations()
+  console.log(playerShipLocations)
 
   playerShipLocations.forEach((location) => {
     player.gameBoard.placeShip(
@@ -25,7 +33,7 @@ export function gameStart() {
       location.startingX,
       location.startingY
     )
-    console.log()
   })
-  const PC = new Player("PC")
+
+  console.log(player.gameBoard)
 }

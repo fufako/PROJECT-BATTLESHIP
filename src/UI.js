@@ -96,10 +96,9 @@ export function gridPlaceShip(event) {
     }
   })
   console.log(userLocations)
-  n--
-  if (n < 2) closePopup()
   userLocations.push({ startingX, startingY, n })
-
+  if (n === 2) closePopup()
+  n--
   return
 }
 

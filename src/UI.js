@@ -1,7 +1,7 @@
-const size = 10
+const SIZE = 10
 const grid = document.querySelector(".grid")
-grid.style.gridTemplateColumns = "repeat(" + size + ", 1fr)"
-grid.style.gridTemplateRows = "repeat(" + size + ", 1fr)"
+grid.style.gridTemplateColumns = "repeat(" + SIZE + ", 1fr)"
+grid.style.gridTemplateRows = "repeat(" + SIZE + ", 1fr)"
 
 for (let i = 0; i < 10; i++) {
   for (let j = 0; j < 10; j++) {

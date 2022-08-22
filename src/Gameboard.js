@@ -3,7 +3,8 @@ import { hitGridItem, markGridItem } from "./UI.js"
 export class GameBoard {
   constructor(owner) {
     this.gameBoardArray = this.createBoardArray()
-    this.missedAttack = []
+    this.missedAttacks = []
+    this.landedAttacks = []
     this.owner = owner
     this.ships = []
   }
@@ -30,16 +31,23 @@ export class GameBoard {
     const attackedShip = this.ships.find(
       (item) => item.name == attackedField.shipName
     )
+
+    if (attackedShip.isSunk()) return
+
     const isThereShip = attackedField.shipName === undefined ? false : true
+
+    if (this.checkIfLanded(x, y)) return "hey"
+
     if (!isThereShip) {
-      this.missedAttack.push({ x: x, y: y })
+      this.missedAttacks.push({ x: x, y: y })
+
       return
     }
-
+    this.landedAttacks.push({ x: x, y: y })
     attackedShip.hit(attackedField.shipPosition)
+    console.log(this.landedAttacks)
 
     hitGridItem(x, y)
-    console.log(attackedShip.isSunk())
   }
   checkShipPlacement = (length, x, y) => {
     if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) return false
@@ -60,7 +68,7 @@ export class GameBoard {
     return this.ships
   }
   getMissedAttacks = () => {
-    return this.missedAttack
+    return this.missedAttacks
   }
   getGameBoard = () => {
     return this.gameBoardArray
@@ -68,7 +76,10 @@ export class GameBoard {
   getShips = () => {
     return this.ships
   }
-  checkIfSunk = (ship) => {
-    console.log(ship.isSunk())
+
+  checkIfLanded = (x, y) => {
+    if (this.landedAttacks.some((attack) => attack.x === x && attack.y === y))
+      return true
+    return false
   }
 }

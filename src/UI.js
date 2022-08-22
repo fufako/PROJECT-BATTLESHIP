@@ -48,26 +48,20 @@ export function markGridMissedAttack(x, y, name) {
   })
 }
 
-export function gridEventListener() {
-  const gridItems = document.querySelectorAll(".grid-item")
-  gridItems.forEach((item) => {
-    item.addEventListener("click", gridPlaceShip)
-    item.addEventListener("mouseover", hoverShipPlacement)
-    item.addEventListener("mouseout", hoverShipPlacement)
-  })
-}
+let n = 6
 
-function hoverShipPlacement(e) {
+export function hoverShipPlacement(e) {
+  if (n < 2) return
   const shipLocation = []
   const startingX = parseInt(e.target.getAttribute("data-x"))
   const startingY = parseInt(e.target.getAttribute("data-y"))
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < n; i++) {
     shipLocation.push(startingY + i)
   }
-  const gridItems = document.querySelectorAll(".grid-item")
+  const gridItems = document.querySelectorAll(".grid-item-popup")
   gridItems.forEach((item) => {
     if (item.dataset.x == startingX) {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < n; i++) {
         if (
           item.dataset.y == shipLocation[i] &&
           item.dataset.marked !== "true"
@@ -79,17 +73,18 @@ function hoverShipPlacement(e) {
   })
 }
 
-function gridPlaceShip(e) {
+export function gridPlaceShip(event) {
+  if (n < 2) return
   const shipLocation = []
-  const startingX = parseInt(e.target.getAttribute("data-x"))
-  const startingY = parseInt(e.target.getAttribute("data-y"))
-  for (let i = 0; i < 5; i++) {
+  const startingX = parseInt(event.target.getAttribute("data-x"))
+  const startingY = parseInt(event.target.getAttribute("data-y"))
+  for (let i = 0; i < n; i++) {
     shipLocation.push(startingY + i)
   }
-  const gridItems = document.querySelectorAll(".grid-item")
+  const gridItems = document.querySelectorAll(".grid-item-popup")
   gridItems.forEach((item) => {
     if (item.dataset.x == startingX) {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < n; i++) {
         if (item.dataset.y == shipLocation[i]) {
           item.style.backgroundColor = "grey"
           item.dataset.marked = "true"
@@ -97,4 +92,26 @@ function gridPlaceShip(e) {
       }
     }
   })
+  n--
+  return
+}
+
+export function createPopup() {
+  const popup = document.querySelector("#popup")
+  const grid = document.createElement("div")
+  popup.appendChild(grid)
+  grid.className = "grid-popup"
+
+  grid.style.gridTemplateColumns = "repeat(" + SIZE + ", 1fr)"
+  grid.style.gridTemplateRows = "repeat(" + SIZE + ", 1fr)"
+
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      const gridItem = document.createElement("div")
+      gridItem.classList.add("grid-item-popup")
+      gridItem.dataset.x = i
+      gridItem.dataset.y = j
+      grid.appendChild(gridItem)
+    }
+  }
 }

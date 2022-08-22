@@ -1,5 +1,10 @@
 import { Ship } from "./Ship"
-import { hitGridItem, markGridItem, markGridMissedAttack } from "./UI.js"
+import {
+  hitGridItem,
+  markGridItem,
+  markGridMissedAttack,
+  gridPlaceShip,
+} from "./UI.js"
 export class GameBoard {
   constructor(owner) {
     this.gameBoardArray = this.createBoardArray()

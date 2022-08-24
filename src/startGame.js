@@ -2,27 +2,21 @@ import {
   hoverShipPlacement,
   gridPlaceShip,
   getUserSelectedLocations,
-  closePopup,
   checkGridShipPlacement,
+  markGridItem,
 } from "./UI"
 import { Player } from "./Player"
 import { GameBoard } from "./Gameboard"
 import { Ship } from "./Ship"
-export function gridEventListener(i) {
+export function popupGridEventListener(i) {
   const gridItems = document.querySelectorAll(".grid-item-popup")
   gridItems.forEach((item) => {
     item.addEventListener("click", (event) => gridPlaceShip(event))
     item.addEventListener("mouseover", hoverShipPlacement)
     item.addEventListener("mouseout", hoverShipPlacement)
   })
-  const battlefieldGridItems = document.querySelectorAll("#PC")
-  console.log(battlefieldGridItems)
-  battlefieldGridItems.forEach((item) => {
-    item.addEventListener("click", (event) => {
-      console.log(event)
-    })
-  })
 }
+
 let pcShipLocations = []
 export function gameStart() {
   const player = new Player("player")
@@ -37,10 +31,11 @@ export function gameStart() {
   })
 
   console.log(player.gameBoard)
+
   const PC = new Player("PC")
 
   let i = 6
-  while (pcShipLocations.length < 6) {
+  while (pcShipLocations.length < 5) {
     let x = getRandomCoords()
     let y = getRandomCoords()
     if (checkPcShips(x, y, i)) {
@@ -56,6 +51,18 @@ export function gameStart() {
       location.startingX,
       location.startingY
     )
+  })
+
+  console.log(PC.gameBoard)
+  const battlefieldGridItems = document.querySelectorAll(".grid-item-PC")
+  battlefieldGridItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation()
+
+      PC.gameBoard.receiveAttack(e.target.dataset.x, e.target.dataset.y)
+
+      player.gameBoard.receiveAttack(getRandomCoords(), getRandomCoords())
+    })
   })
 }
 

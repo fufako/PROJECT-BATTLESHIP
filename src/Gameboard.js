@@ -54,6 +54,9 @@ export class GameBoard {
     console.log(this.landedAttacks)
 
     hitGridItem(x, y, this.owner)
+    if (this.isOver()) {
+      //do something
+    }
   }
   checkShipPlacement = (length, x, y) => {
     if (x > 10 || x < 0 || y > 10 || y < 0 || y + length >= 10) return false
@@ -86,5 +89,13 @@ export class GameBoard {
     if (this.landedAttacks.some((attack) => attack.x === x && attack.y === y))
       return true
     return false
+  }
+  isOver = () => {
+    let over = true
+    this.ships.forEach((ship) => {
+      if (ship.isSunk()) return
+      over = false
+    })
+    return over
   }
 }

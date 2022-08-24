@@ -9,7 +9,6 @@ export class Ship {
       return
 
     this.hits.push(position)
-    console.log(this.hits)
   }
   isSunk() {
     return this.hits.length === this.length

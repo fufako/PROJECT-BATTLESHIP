@@ -24,7 +24,7 @@ export function createGrid(name) {
 }
 
 export function markGridItem(x, y, name) {
-  const gridItems = document.querySelectorAll(`#${name}`)
+  const gridItems = document.querySelectorAll(`.grid-item-${name}`)
   gridItems.forEach((item) => {
     if (item.dataset.x == x && item.dataset.y == y) {
       item.style.backgroundColor = "pink"
@@ -32,7 +32,7 @@ export function markGridItem(x, y, name) {
   })
 }
 export function hitGridItem(x, y, name) {
-  const gridItems = document.querySelectorAll(`#${name}`)
+  const gridItems = document.querySelectorAll(`.grid-item-${name}`)
   gridItems.forEach((item) => {
     if (item.dataset.x == x && item.dataset.y == y) {
       item.style.backgroundColor = "yellow"
@@ -76,6 +76,7 @@ export function hoverShipPlacement(e) {
 //Save locations that user have picked
 const userLocations = []
 export function gridPlaceShip(event) {
+  let isPopup = true
   const shipLocation = []
   const startingX = parseInt(event.target.getAttribute("data-x"))
   const startingY = parseInt(event.target.getAttribute("data-y"))
@@ -97,7 +98,11 @@ export function gridPlaceShip(event) {
   })
 
   userLocations.push({ startingX, startingY, n })
-  if (n === 2) closePopup()
+  if (n === 2 && isPopup) {
+    closePopup()
+    isPopup = false
+  }
+
   n--
   return
 }

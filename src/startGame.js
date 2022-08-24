@@ -54,6 +54,7 @@ export function gameStart() {
   })
 
   console.log(PC.gameBoard)
+  const pcHits = []
   const battlefieldGridItems = document.querySelectorAll(".grid-item-PC")
   battlefieldGridItems.forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -65,12 +66,14 @@ export function gameStart() {
       )
         return
 
+      let x = getRandomCoords()
+      let y = getRandomCoords()
       do {
-        player.gameBoard.receiveAttack(getRandomCoords(), getRandomCoords())
-      } while (
-        player.gameBoard.receiveAttack(getRandomCoords(), getRandomCoords()) ===
-        undefined
-      )
+        x = getRandomCoords()
+        y = getRandomCoords()
+      } while (pcHits.some((attack) => attack.x === x && attack.y === y))
+      player.gameBoard.receiveAttack(x, y)
+      pcHits.push({ x: x, y: y })
     })
   })
 }

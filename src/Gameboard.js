@@ -45,7 +45,7 @@ export class GameBoard {
       this.missedAttacks.push({ x: x, y: y })
       markGridMissedAttack(x, y, this.owner)
 
-      return
+      return true
     }
     if (attackedShip.isSunk()) return
     this.landedAttacks.push({ x: x, y: y })

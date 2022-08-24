@@ -14,7 +14,7 @@ export function createGrid(name) {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
       const gridItem = document.createElement("div")
-      gridItem.classList.add("grid-item")
+      gridItem.classList.add(`grid-item-${name}`)
       gridItem.id = name
       gridItem.dataset.x = i
       gridItem.dataset.y = j
@@ -74,7 +74,7 @@ export function hoverShipPlacement(e) {
 }
 
 //Save locations that user have picked
-let userLocations = []
+const userLocations = []
 export function gridPlaceShip(event) {
   const shipLocation = []
   const startingX = parseInt(event.target.getAttribute("data-x"))
@@ -95,7 +95,7 @@ export function gridPlaceShip(event) {
       }
     }
   })
-  console.log(userLocations)
+
   userLocations.push({ startingX, startingY, n })
   if (n === 2) closePopup()
   n--
@@ -130,7 +130,7 @@ export function closePopup() {
   gameStart()
 }
 
-function checkGridShipPlacement(x, y, n) {
+export function checkGridShipPlacement(x, y, n) {
   if (x > 10 || x < 0 || y > 10 || y < 0 || y + n > 10) return false
 
   const gridItems = document.querySelectorAll(

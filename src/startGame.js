@@ -59,9 +59,18 @@ export function gameStart() {
     item.addEventListener("click", (e) => {
       e.stopPropagation()
 
-      PC.gameBoard.receiveAttack(e.target.dataset.x, e.target.dataset.y)
+      if (
+        PC.gameBoard.receiveAttack(e.target.dataset.x, e.target.dataset.y) ===
+        undefined
+      )
+        return
 
-      player.gameBoard.receiveAttack(getRandomCoords(), getRandomCoords())
+      do {
+        player.gameBoard.receiveAttack(getRandomCoords(), getRandomCoords())
+      } while (
+        player.gameBoard.receiveAttack(getRandomCoords(), getRandomCoords()) ===
+        undefined
+      )
     })
   })
 }

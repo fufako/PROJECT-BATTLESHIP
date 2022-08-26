@@ -44,7 +44,6 @@ export function gameStart() {
     }
   }
 
-  console.log(pcShipLocations)
   pcShipLocations.forEach((location) => {
     PC.gameBoard.placeShip(
       new Ship(location.n),

@@ -72,7 +72,9 @@ export class GameBoard {
     for (let i = 0; i < ship.getLength(); i++) {
       this.gameBoardArray[x][y + i][0].shipName = ship.nameHandler()
       this.gameBoardArray[x][y + i][0].shipPosition = i
-      markGridItem(x, y + i, this.owner)
+      if (this.owner === "player") {
+        markGridItem(x, y + i, this.owner)
+      }
     }
     this.ships.push(ship)
     return this.ships

@@ -52,10 +52,8 @@ export class GameBoard {
     if (attackedShip.isSunk()) return
     this.landedAttacks.push({ x: x, y: y })
     attackedShip.hit(attackedField.shipPosition)
-    console.log(this.landedAttacks)
 
     hitGridItem(x, y, this.owner)
-    console.log(this.isOver())
     if (this.isOver()) {
       playAgainPopup(this.owner)
     }

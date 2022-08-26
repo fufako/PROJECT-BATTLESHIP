@@ -30,8 +30,6 @@ export function gameStart() {
     )
   })
 
-  console.log(player.gameBoard)
-
   const PC = new Player("PC")
 
   let i = 6
@@ -52,7 +50,6 @@ export function gameStart() {
     )
   })
 
-  console.log(PC.gameBoard)
   const pcHits = []
   const battlefieldGridItems = document.querySelectorAll(".grid-item-PC")
   battlefieldGridItems.forEach((item) => {

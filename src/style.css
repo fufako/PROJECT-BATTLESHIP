@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap");
 @import url("https://fonts.cdnfonts.com/css/modern-warfare");
+@import url("https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap");
 .grid {
   display: grid;
   width: 400px;
@@ -9,7 +10,7 @@
 }
 
 h1 {
-  font-family: "Modern Warfare", sans-serif;
+  font-family: "Stalinist One", cursive;
   color: #252323;
   text-align: center;
   font-weight: lighter;
@@ -54,11 +55,11 @@ body {
   width: 300px;
   height: 150px;
   color: #252323;
-  font-family: "Rubik Dirt", cursive;
+  font-family: "Stalinist One", cursive;
   font-size: 1.2rem;
 }
 .play-again-btn {
-  font-family: "Modern Warfare", sans-serif;
+  font-family: "Stalinist One", cursive;
   font-size: 1.5rem;
   transition: transform 0.1s ease-in-out 0s;
   padding: 1rem 2rem;
@@ -91,7 +92,7 @@ body {
 }
 h2 {
   font-size: 3rem;
-  font-family: "Modern Warfare", sans-serif;
+  font-family: "Stalinist One", cursive;
   margin: 0;
   padding: 0;
   color: #252323;
@@ -99,7 +100,7 @@ h2 {
 .info {
   font-size: 1.5rem;
   padding: 20px;
-  font-family: "Modern Warfare", sans-serif;
+  font-family: "Stalinist One", cursive;
   color: #252323;
 }
 

@@ -41,6 +41,7 @@ export class GameBoard {
     const isThereShip = attackedField.shipName === undefined ? false : true
 
     if (this.checkIfLanded(x, y)) return
+    if (this.checkIfMissed(x, y)) return
     if (!isThereShip) {
       this.missedAttacks.push({ x: x, y: y })
       markGridMissedAttack(x, y, this.owner)
@@ -88,6 +89,11 @@ export class GameBoard {
 
   checkIfLanded = (x, y) => {
     if (this.landedAttacks.some((attack) => attack.x === x && attack.y === y))
+      return true
+    return false
+  }
+  checkIfMissed = (x, y) => {
+    if (this.missedAttacks.some((attack) => attack.x === x && attack.y === y))
       return true
     return false
   }

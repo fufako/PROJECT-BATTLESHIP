@@ -12,7 +12,6 @@ export function popupGridEventListener(i) {
   const gridItems = document.querySelectorAll(".grid-item-popup")
   gridItems.forEach((item) => {
     item.addEventListener("click", (event) => gridPlaceShip(event))
-    item.addEventListener("click", (event) => gridPlaceShip(event))
     item.addEventListener("mouseover", hoverShipPlacement)
     item.addEventListener("mouseout", hoverShipPlacement)
   })

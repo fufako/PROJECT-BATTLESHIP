@@ -13,6 +13,7 @@ h1 {
   color: blanchedalmond;
   text-align: center;
   font-weight: lighter;
+  font-size: 4rem;
 }
 .grid-container {
   display: flex;
@@ -26,6 +27,9 @@ body {
 .grid-item-PC,
 .grid-item-player {
   border: 1px solid black;
+}
+.grid-item-PC:hover {
+  background-color: aquamarine;
 }
 #popup {
   position: fixed;
@@ -46,11 +50,15 @@ body {
   background-color: whitesmoke;
 }
 h2 {
-  font-size: 4rem;
+  font-size: 3rem;
+  font-family: "Rubik Dirt", cursive;
+  margin: 0;
+  padding: 0;
 }
 .info {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 20px;
+  font-family: "Rubik Dirt", cursive;
 }
 
 .grid-popup {

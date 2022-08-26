@@ -18,7 +18,7 @@ h1 {
 }
 .grid-container {
   display: flex;
-  gap: 50px;
+  gap: 45px;
   align-items: center;
   justify-content: center;
 }

@@ -102,16 +102,34 @@ export function gridPlaceShip(event) {
     closePopup()
     isPopup = false
   }
-
+  displayShipName(n)
   n--
   return
 }
 
+function displayShipName(n) {
+  const info = document.querySelector(".info")
+  info.textContent = "Place your " + getShipName(n - 1)
+}
+function getShipName(n) {
+  if (n === 6) return "Carrier"
+  if (n === 5) return "Battleship"
+  if (n === 4) return "Destroyer"
+  if (n === 3) return "Submarine"
+  if (n === 2) return "Patrol Boat"
+}
 export function createPopup() {
   const popup = document.querySelector("#popup")
+  const infoHeader = document.createElement("h2")
+  const info = document.createElement("div")
   const grid = document.createElement("div")
+  popup.appendChild(infoHeader)
+  popup.appendChild(info)
   popup.appendChild(grid)
+  info.className = "info"
   grid.className = "grid-popup"
+  infoHeader.textContent = "Battleship Game"
+  info.textContent = `Place your Carrier`
 
   grid.style.gridTemplateColumns = "repeat(" + SIZE + ", 1fr)"
   grid.style.gridTemplateRows = "repeat(" + SIZE + ", 1fr)"

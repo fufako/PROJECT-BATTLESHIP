@@ -48,6 +48,11 @@ body {
 h2 {
   font-size: 4rem;
 }
+.info {
+  font-size: 2rem;
+  padding: 20px;
+}
+
 .grid-popup {
   display: grid;
   visibility: visible;

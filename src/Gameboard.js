@@ -4,6 +4,7 @@ import {
   markGridItem,
   markGridMissedAttack,
   gridPlaceShip,
+  playAgainPopup,
 } from "./UI.js"
 
 export class GameBoard {
@@ -56,7 +57,7 @@ export class GameBoard {
     hitGridItem(x, y, this.owner)
     console.log(this.isOver())
     if (this.isOver()) {
-      //do something
+      playAgainPopup(this.owner)
     }
     return true
   }
@@ -72,9 +73,9 @@ export class GameBoard {
     for (let i = 0; i < ship.getLength(); i++) {
       this.gameBoardArray[x][y + i][0].shipName = ship.nameHandler()
       this.gameBoardArray[x][y + i][0].shipPosition = i
-      if (this.owner === "player") {
-        markGridItem(x, y + i, this.owner)
-      }
+      //if (this.owner === "player") {
+      markGridItem(x, y + i, this.owner)
+      //}
     }
     this.ships.push(ship)
     return this.ships

@@ -119,6 +119,29 @@ function getShipName(n) {
   if (n === 3) return "Submarine"
   if (n === 2) return "Patrol Boat"
 }
+
+export function playAgainPopup(winner) {
+  const body = document.body
+  const container = document.createElement("div")
+  const playDiv = document.createElement("div")
+  const h3 = document.createElement("h3")
+  const playAgainBtn = document.createElement("button")
+  container.className = "play-again"
+  playDiv.className = "play-again-div"
+
+  playAgainBtn.className = "play-again-btn"
+  playAgainBtn.textContent = "Play again"
+  if (winner == "PC") {
+    h3.textContent = "You won"
+  } else {
+    h3.textContent = "Computer won"
+  }
+
+  playDiv.appendChild(h3)
+  playDiv.appendChild(playAgainBtn)
+  container.appendChild(playDiv)
+  body.appendChild(container)
+}
 export function createPopup() {
   const popup = document.querySelector("#popup")
   const infoHeader = document.createElement("h2")

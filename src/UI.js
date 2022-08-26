@@ -27,7 +27,7 @@ export function markGridItem(x, y, name) {
   const gridItems = document.querySelectorAll(`.grid-item-${name}`)
   gridItems.forEach((item) => {
     if (item.dataset.x == x && item.dataset.y == y) {
-      item.style.backgroundColor = "pink"
+      item.style.backgroundColor = "#252323"
     }
   })
 }
@@ -35,7 +35,7 @@ export function hitGridItem(x, y, name) {
   const gridItems = document.querySelectorAll(`.grid-item-${name}`)
   gridItems.forEach((item) => {
     if (item.dataset.x == x && item.dataset.y == y) {
-      item.style.backgroundColor = "yellow"
+      item.style.backgroundColor = "#ffee32"
     }
   })
 }
@@ -44,7 +44,7 @@ export function markGridMissedAttack(x, y, name) {
   const gridItems = document.querySelectorAll(`#${name}`)
   gridItems.forEach((item) => {
     if (item.dataset.x == x && item.dataset.y == y) {
-      item.style.backgroundColor = "red"
+      item.style.backgroundColor = "#e5383b"
     }
   })
 }
@@ -66,7 +66,8 @@ export function hoverShipPlacement(e) {
           item.dataset.y == shipLocation[i] &&
           item.dataset.marked !== "true"
         ) {
-          item.style.backgroundColor = e.type === "mouseover" ? "blue" : "white"
+          item.style.backgroundColor =
+            e.type === "mouseover" ? "#252323" : "#f5f1ed"
         }
       }
     }
@@ -90,7 +91,7 @@ export function gridPlaceShip(event) {
     if (item.dataset.x == startingX) {
       for (let i = 0; i < n; i++) {
         if (item.dataset.y == shipLocation[i]) {
-          item.style.backgroundColor = "grey"
+          item.style.backgroundColor = "#252323"
           item.dataset.marked = "true"
         }
       }
@@ -141,6 +142,10 @@ export function playAgainPopup(winner) {
   playDiv.appendChild(playAgainBtn)
   container.appendChild(playDiv)
   body.appendChild(container)
+  playAgainBtn.addEventListener("click", refreshPage)
+}
+const refreshPage = () => {
+  location.reload()
 }
 export function createPopup() {
   const popup = document.querySelector("#popup")

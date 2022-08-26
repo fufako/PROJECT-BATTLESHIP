@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap");
+@import url("http://fonts.cdnfonts.com/css/modern-warfare");
 .grid {
   display: grid;
   width: 400px;
   height: 400px;
   border-color: #fffff0;
-  background-color: #fffaf0;
-  border-style: inset;
+  background-color: #f5f1ed;
 }
 
 h1 {
-  font-family: "Rubik Dirt", cursive;
-  color: blanchedalmond;
+  font-family: "Modern Warfare", sans-serif;
+  color: #252323;
   text-align: center;
   font-weight: lighter;
   font-size: 4rem;
@@ -22,14 +22,16 @@ h1 {
   justify-content: center;
 }
 body {
-  background-color: grey;
+  background-color: #f5f1ed;
+  color: #463f3a;
 }
 .grid-item-PC,
 .grid-item-player {
-  border: 1px solid black;
+  border: 1px solid #252323;
+  background-color: #f5f1ed;
 }
 .grid-item-PC:hover {
-  background-color: aquamarine;
+  background-color: #252323;
 }
 .play-again {
   position: fixed;
@@ -44,27 +46,26 @@ body {
   align-content: center;
   justify-content: center;
   flex-direction: column;
-
-  color: #e4dccf;
   background-color: rgba(0, 0, 0, 0.28);
 }
 .play-again-div {
   border-radius: 20px;
-  background-color: #fffaf0;
+  background-color: #f5f1ed;
   width: 300px;
   height: 150px;
-  color: rgb(34, 34, 34);
+  color: #252323;
   font-family: "Rubik Dirt", cursive;
   font-size: 1.2rem;
 }
 .play-again-btn {
-  font-family: "Rubik Dirt", cursive;
+  font-family: "Modern Warfare", sans-serif;
   font-size: 1.5rem;
   transition: transform 0.1s ease-in-out 0s;
   padding: 1rem 2rem;
   border-radius: 10px;
-  background-color: rgb(34, 34, 34);
-  color: rgb(238, 238, 238);
+  background-color: #252323;
+  color: #f5f1ed;
+  border: 0;
 }
 
 .play-again-btn:hover {
@@ -86,18 +87,20 @@ body {
 
   color: #e4dccf;
   z-index: 100;
-  background-color: whitesmoke;
+  background-color: #f5f1ed;
 }
 h2 {
   font-size: 3rem;
-  font-family: "Rubik Dirt", cursive;
+  font-family: "Modern Warfare", sans-serif;
   margin: 0;
   padding: 0;
+  color: #252323;
 }
 .info {
   font-size: 1.5rem;
   padding: 20px;
-  font-family: "Rubik Dirt", cursive;
+  font-family: "Modern Warfare", sans-serif;
+  color: #252323;
 }
 
 .grid-popup {
@@ -107,6 +110,6 @@ h2 {
   height: 500px;
 }
 .grid-item-popup {
-  border: 1px solid black;
-  background-color: white;
+  border: 1px solid #252323;
+  background-color: #f5f1ed;
 }
